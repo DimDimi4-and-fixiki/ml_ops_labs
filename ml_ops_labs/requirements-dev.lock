@@ -16,6 +16,8 @@ absl-py==2.1.0
     # via tensorflow
 altair==5.4.1
     # via streamlit
+annotated-types==0.7.0
+    # via pydantic
 astunparse==1.6.3
     # via tensorflow
 attrs==24.2.0
@@ -109,14 +111,26 @@ protobuf==5.28.3
     # via streamlit
     # via tensorboard
     # via tensorflow
+psycopg2==2.9.10
+    # via ml-ops-labs
+psycopg2-binary==2.9.10
+    # via ml-ops-labs
 pyarrow==18.0.0
     # via streamlit
+pydantic==2.10.1
+    # via pydantic-settings
+pydantic-core==2.27.1
+    # via pydantic
+pydantic-settings==2.6.1
+    # via ml-ops-labs
 pydeck==0.9.1
     # via streamlit
 pygments==2.18.0
     # via rich
 python-dateutil==2.9.0.post0
     # via pandas
+python-dotenv==1.0.1
+    # via pydantic-settings
 pytz==2024.2
     # via pandas
 pyyaml==6.0.2
@@ -144,6 +158,8 @@ six==1.16.0
     # via tensorflow
 smmap==5.0.1
     # via gitdb
+sqlalchemy==2.0.36
+    # via ml-ops-labs
 streamlit==1.40.1
     # via ml-ops-labs
 tenacity==9.0.0
@@ -163,6 +179,9 @@ tornado==6.4.2
 typing-extensions==4.12.2
     # via altair
     # via optree
+    # via pydantic
+    # via pydantic-core
+    # via sqlalchemy
     # via streamlit
     # via tensorflow
 tzdata==2024.2

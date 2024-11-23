@@ -3,6 +3,7 @@ from ml_ops_labs.ml_models.cats_dogs import load_cats_model
 from loguru import logger
 from keras.api.preprocessing.image import load_img
 from streamlit.runtime.uploaded_file_manager import UploadedFile
+from ml_ops_labs.db.logs import add_log_entry
 import numpy as np
 import tempfile
 from PIL.Image import Image
@@ -26,6 +27,7 @@ def index() -> None:
     st.title("Cats VS Dogs classifier")
     upload_file = st.file_uploader(label="Upload image", type=["jpg", "jpeg"])
     if upload_file is not None:
+        add_log_entry(log_text=f"{upload_file.name}")
         predict_from_upload_file(upload_file)
 
 
