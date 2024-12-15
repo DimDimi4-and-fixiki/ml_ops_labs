@@ -1,4 +1,16 @@
+import enum
 from pydantic_settings import BaseSettings
+
+
+class LogLevel(str, enum.Enum):
+    """Possible log levels."""
+
+    NOTSET = "NOTSET"
+    DEBUG = "DEBUG"
+    INFO = "INFO"
+    WARNING = "WARNING"
+    ERROR = "ERROR"
+    FATAL = "FATAL"
 
 
 class Settings(BaseSettings):
@@ -8,6 +20,17 @@ class Settings(BaseSettings):
     These parameters can be configured
     with environment variables.
     """
+
+    host: str = "127.0.0.1"
+    port: int = 8080
+    # quantity of workers for uvicorn
+    workers_count: int = 1
+    # Enable uvicorn reloading
+    reload: bool = False
+    # Current environment
+    environment: str = "dev"
+    log_level: LogLevel = LogLevel.INFO
+    request_id_header: str = "x-request-id"
 
     db_user: str = "ml_ops"
     db_pass: str = "ml_ops"

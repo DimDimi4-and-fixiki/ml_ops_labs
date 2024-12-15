@@ -12,4 +12,11 @@ services:
     command: -c fsync=off -c full_page_writes=off
     tmpfs: /var/lib/postgresql/data
 
+  ml_app:
+    depends_on:
+      - postgres
+    build: .
+    ports:
+      - "8080:8080"
+      - "8501:8501"
 
