@@ -7,13 +7,18 @@ authors = [
 ]
 dependencies = [
     "streamlit>=1.40.1",
-    "keras>=3.5.0",
+    "keras>=3.7.0",
     "loguru>=0.7.2",
     "tensorflow>=2.18.0",
     "pydantic-settings>=2.6.1",
     "psycopg2>=2.9.10",
     "psycopg2-binary>=2.9.10",
     "sqlalchemy>=2.0.36",
+    "fastapi>=0.115.6",
+    "uvicorn>=0.34.0",
+    "ujson>=5.10.0",
+    "python-multipart>=0.0.20",
+    "httpx>=0.28.1",
 ]
 readme = "README.md"
 requires-python = ">= 3.8"
@@ -25,8 +30,11 @@ build-backend = "hatchling.build"
 [tool.rye]
 managed = true
 dev-dependencies = [
-    "poethepoet>=0.30.0",
+    "poethepoet>=0.32.0",
 ]
+
+[tool.ruff.lint]
+ignore = ["F403"]
 
 [tool.hatch.metadata]
 allow-direct-references = true
@@ -37,3 +45,4 @@ packages = ["src/ml_ops_labs"]
 [tool.poe.tasks]
 web-view = "streamlit run src/ml_ops_labs/web_view/index.py"
 db-up = "docker-compose -f docker-compose-local.yaml up"
+server  = "python src/ml_ops_labs/main.py"

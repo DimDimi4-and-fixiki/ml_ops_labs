@@ -1,8 +1,8 @@
-from ml_ops_labs.web_view.index import index
+from ml_ops_labs.ml_api import main as run_api
 
 
 def main() -> None:
-    index()
+    run_api()
 
 
 if __name__ == "__main__":

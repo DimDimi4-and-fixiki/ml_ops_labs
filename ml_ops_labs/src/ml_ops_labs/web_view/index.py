@@ -1,42 +1,25 @@
 import streamlit as st
-from ml_ops_labs.ml_models.cats_dogs import load_cats_model
-from loguru import logger
-from keras.api.preprocessing.image import load_img
+from PIL import Image
 from streamlit.runtime.uploaded_file_manager import UploadedFile
-from ml_ops_labs.db.logs import add_log_entry
-import numpy as np
+from pathlib import Path
 import tempfile
-from PIL.Image import Image
-import pathlib
-
-
-model = load_cats_model()
-
-
-def get_predict(img_path: pathlib.Path) -> (str, Image):
-    logger.info(f"Loading {img_path} for predict")
-    img = load_img(img_path, target_size=(224, 224))
-    img_array = np.array(img).reshape(1, 224, 224, 3)
-    a = model.predict(img_array)
-    if a == [[0]]:
-        return "cat", img
-    return "dog", img
+from ml_ops_labs.clients.ml_api import predict_pet
 
 
 def index() -> None:
     st.title("Cats VS Dogs classifier")
     upload_file = st.file_uploader(label="Upload image", type=["jpg", "jpeg"])
     if upload_file is not None:
-        add_log_entry(log_text=f"{upload_file.name}")
         predict_from_upload_file(upload_file)
 
 
 def predict_from_upload_file(upload_file: UploadedFile):
     with tempfile.NamedTemporaryFile(suffix=".jpg") as tmp_file:
         tmp_file.write(upload_file.getvalue())
-        predict, img = get_predict(pathlib.Path(tmp_file.name))
-
-    st.image(img)
+        predict = predict_pet(model_type="Linear", file_path=Path(tmp_file.name))
+        pil_img = Image.open(tmp_file)
+        st.image(pil_img)
+    # predict = detect_pet(client=client, body=BodyDetectPetApiCatsDogsDetectPetPost(image=))
     predict_text = f"Predicted {predict} "
     if predict == "dog":
         predict_text += "🐶"

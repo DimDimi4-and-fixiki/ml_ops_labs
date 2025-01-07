@@ -18,6 +18,9 @@ altair==5.4.1
     # via streamlit
 annotated-types==0.7.0
     # via pydantic
+anyio==4.7.0
+    # via httpx
+    # via starlette
 astunparse==1.6.3
     # via tensorflow
 attrs==24.2.0
@@ -28,11 +31,16 @@ blinker==1.9.0
 cachetools==5.5.0
     # via streamlit
 certifi==2024.8.30
+    # via httpcore
+    # via httpx
     # via requests
 charset-normalizer==3.4.0
     # via requests
 click==8.1.7
     # via streamlit
+    # via uvicorn
+fastapi==0.115.6
+    # via ml-ops-labs
 flatbuffers==24.3.25
     # via tensorflow
 gast==0.6.0
@@ -46,10 +54,19 @@ google-pasta==0.2.0
 grpcio==1.68.0
     # via tensorboard
     # via tensorflow
+h11==0.14.0
+    # via httpcore
+    # via uvicorn
 h5py==3.12.1
     # via keras
     # via tensorflow
+httpcore==1.0.7
+    # via httpx
+httpx==0.28.1
+    # via ml-ops-labs
 idna==3.10
+    # via anyio
+    # via httpx
     # via requests
 jinja2==3.1.4
     # via altair
@@ -58,7 +75,7 @@ jsonschema==4.23.0
     # via altair
 jsonschema-specifications==2024.10.1
     # via jsonschema
-keras==3.6.0
+keras==3.7.0
     # via ml-ops-labs
     # via tensorflow
 libclang==18.1.1
@@ -106,7 +123,7 @@ pastel==0.2.1
     # via poethepoet
 pillow==11.0.0
     # via streamlit
-poethepoet==0.30.0
+poethepoet==0.32.0
 protobuf==5.28.3
     # via streamlit
     # via tensorboard
@@ -118,6 +135,7 @@ psycopg2-binary==2.9.10
 pyarrow==18.0.0
     # via streamlit
 pydantic==2.10.1
+    # via fastapi
     # via pydantic-settings
 pydantic-core==2.27.1
     # via pydantic
@@ -131,6 +149,8 @@ python-dateutil==2.9.0.post0
     # via pandas
 python-dotenv==1.0.1
     # via pydantic-settings
+python-multipart==0.0.20
+    # via ml-ops-labs
 pytz==2024.2
     # via pandas
 pyyaml==6.0.2
@@ -158,8 +178,12 @@ six==1.16.0
     # via tensorflow
 smmap==5.0.1
     # via gitdb
+sniffio==1.3.1
+    # via anyio
 sqlalchemy==2.0.36
     # via ml-ops-labs
+starlette==0.41.3
+    # via fastapi
 streamlit==1.40.1
     # via ml-ops-labs
 tenacity==9.0.0
@@ -178,6 +202,8 @@ tornado==6.4.2
     # via streamlit
 typing-extensions==4.12.2
     # via altair
+    # via anyio
+    # via fastapi
     # via optree
     # via pydantic
     # via pydantic-core
@@ -186,8 +212,12 @@ typing-extensions==4.12.2
     # via tensorflow
 tzdata==2024.2
     # via pandas
+ujson==5.10.0
+    # via ml-ops-labs
 urllib3==2.2.3
     # via requests
+uvicorn==0.34.0
+    # via ml-ops-labs
 werkzeug==3.1.3
     # via tensorboard
 wheel==0.45.1
