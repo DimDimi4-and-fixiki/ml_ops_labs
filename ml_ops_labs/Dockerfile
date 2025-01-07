@@ -23,6 +23,7 @@ RUN pip install --no-cache-dir -r requirements.lock
 
 # Копируем код приложения в контейнер
 COPY src .
+COPY run_servers.sh .
 
 ENV PYTHONPATH "${PYTHONPATH}:/ml_ops_labs"
 
@@ -30,8 +31,5 @@ ENV PYTHONPATH "${PYTHONPATH}:/ml_ops_labs"
 EXPOSE $APP_PORT
 EXPOSE $WEB_VIEW_PORT
 
-# Запускаем web-api
-CMD python src/ml_ops_labs/main.py
-
-# Запускаем web-view
-CMD ["streamlit", "run", "ml_ops_labs/web_view/index.py"]
+# Запускаем web-view и ml-api
+CMD ./run_servers.sh

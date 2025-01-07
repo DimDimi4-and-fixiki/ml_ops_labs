@@ -24,12 +24,6 @@ def register_startup_event(
         configure_logging()
 
         logger.info("Connecting to DB")
-        try:
-            await db_tools.connect()
-        except Exception as e:
-            logger.exception(e)
-            logger.critical("Couldn't connect to DB on app startup", exception=e)
-
         app.middleware_stack = None
         app.middleware_stack = app.build_middleware_stack()
 

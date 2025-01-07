@@ -10,10 +10,10 @@ Base = declarative_base()
 
 class Log(Base):
     __tablename__ = "logs"
-
     id = Column(Integer, primary_key=True, autoincrement=True)
     created_at = Column(DateTime, default=datetime.utcnow)
     text = Column(String, nullable=False)
+    model_name = Column(String, nullable=False)
 
 
 engine = create_engine(get_dsn(with_params=False))
@@ -23,7 +23,7 @@ session = Session()
 
 
 # Пример добавления записи в таблицу Log
-def add_log_entry(log_text):
-    new_log = Log(text=log_text)
+def add_log_entry(log_text, model_name: str):
+    new_log = Log(text=log_text, model_name=model_name)
     session.add(new_log)
     session.commit()
